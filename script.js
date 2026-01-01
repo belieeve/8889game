@@ -62,6 +62,7 @@ function startGame() {
 }
 
 
+
 function renderQuestion() {
     const q = currentQuestions[currentQuestionIndex];
     const progress = ((currentQuestionIndex) / currentQuestions.length) * 100;
@@ -69,10 +70,17 @@ function renderQuestion() {
     app.innerHTML = `
         <div class="feedback" id="feedback"></div>
         <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                <span class="retro-tag" style="margin-bottom: 0;">Q.${currentQuestionIndex + 1}</span>
+                <button onclick="renderStart()" style="background: none; border: none; color: var(--text-main); font-family: 'DotGothic16', sans-serif; cursor: pointer; opacity: 0.7;">
+                    ↩ TOP
+                </button>
+            </div>
+            
             <div class="progress-bar">
                 <div class="progress-fill" style="width: ${progress}%"></div>
             </div>
-            <span class="retro-tag">Q.${currentQuestionIndex + 1}</span>
+            
             <div class="question-text">${q.question}</div>
             <div class="options-grid">
                 ${q.options.map((opt, index) => `
@@ -144,6 +152,7 @@ function showResult() {
                 <p style="font-size: 1rem; margin-top: 10px; opacity: 0.9;">${msg}</p>
             </div>
             <button class="btn" onclick="startGame()">もう一度遊ぶ</button>
+            <button class="btn" onclick="renderStart()" style="margin-top: 10px; background: transparent; border: 1px solid var(--glass-border); color: var(--text-main);">トップに戻る</button>
         </div>
     `;
 }
