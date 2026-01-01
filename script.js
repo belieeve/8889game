@@ -102,6 +102,11 @@ function renderQuestion() {
 }
 
 function checkAnswer(selectedIndex) {
+    // Prevent button from staying focused/highlighted
+    if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+    }
+
     const q = currentQuestions[currentQuestionIndex];
     const isCorrect = selectedIndex === q.answer;
 
