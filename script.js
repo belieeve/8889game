@@ -102,10 +102,14 @@ function renderQuestion() {
 }
 
 function checkAnswer(selectedIndex) {
-    // Prevent button from staying focused/highlighted
-    if (document.activeElement instanceof HTMLElement) {
-        document.activeElement.blur();
-    }
+    // Disable all buttons to prevent double submission and force focus loss
+    const buttons = document.querySelectorAll('.options-grid .btn');
+    buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.pointerEvents = 'none';
+        btn.blur();
+    });
+
 
     const q = currentQuestions[currentQuestionIndex];
     const isCorrect = selectedIndex === q.answer;
