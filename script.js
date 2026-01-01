@@ -86,16 +86,11 @@ function renderQuestion() {
                 </button>
             </div>
             
+
             <div class="progress-bar">
                 <div class="progress-fill" style="width: ${progress}%"></div>
             </div>
 
-            ${q.img ? `
-            <div style="margin: 1rem 0; text-align: center;">
-                <img src="${q.img}" alt="Illustration" style="${filterStyle} width: 100%; max-width: 250px; height: auto; border-radius: 8px; border: 1px solid var(--glass-border); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
-            </div>
-            ` : ''}
-            
             <div class="question-text">${q.question}</div>
             <div class="options-grid">
                 ${q.options.map((opt, index) => `
