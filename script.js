@@ -53,13 +53,17 @@ function renderStart() {
     `;
 }
 
+
 function startGame() {
     initGame();
     currentState = 'quiz';
     currentQuestionIndex = 0;
     score = 0;
+    document.documentElement.style.setProperty('--hue-rotate', '0deg'); // Reset
     renderQuestion();
 }
+
+
 
 
 
@@ -67,6 +71,10 @@ function startGame() {
 function renderQuestion() {
     const q = currentQuestions[currentQuestionIndex];
     const progress = ((currentQuestionIndex) / currentQuestions.length) * 100;
+
+    // Random hue rotation for "unique" feel even with same base image
+    const hueRotate = Math.floor(Math.random() * 60) - 30; // +/- 30deg shift
+    const filterStyle = `filter: hue-rotate(${hueRotate}deg);`;
 
     app.innerHTML = `
         <div class="feedback" id="feedback"></div>
@@ -84,7 +92,7 @@ function renderQuestion() {
 
             ${q.img ? `
             <div style="margin: 1rem 0; text-align: center;">
-                <img src="${q.img}" alt="Illustration" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; border: 1px solid var(--glass-border); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                <img src="${q.img}" alt="Illustration" style="${filterStyle} width: 100%; max-width: 250px; height: auto; border-radius: 8px; border: 1px solid var(--glass-border); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
             </div>
             ` : ''}
             
